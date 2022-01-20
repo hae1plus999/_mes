@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.product.goods">
+	<resultMap id="goods_warehouse_Result" type="goods_warehouseVO">
+		<result property="rd_NO" column="rd_NO" />
+		<result property="pr_NO" column="pr_NO" />
+		<result property="use_Report" column="use_Report" />
+		<result property="pr_Process" column="pr_Process" />
+		<result property="pr_Workspace" column="pr_Workspace" />
+		<result property="pr_Date" column="pr_Date" />
+		<result property="itemNO" column="itemNO" />
+		<result property="item_Name" column="item_Name" />
+		<result property="stockUnit" column="stockUnit" />
+		<result property="rd_Status" column="rd_Status" />
+		<result property="pr_OrNot" column="pr_OrNot" />
+		<result property="pr_Quantity" column="pr_Quantity" />
+		
+		<result property="use_Date" column="use_Date" />
+		<result property="cds_needQuantity" column="cds_needQuantity" />
+		<result property="mu_Warehouse" column="mu_Warehouse" />
+		<result property="mu_Place" column="mu_Place" />
+	</resultMap>
+	
+</mapper>
