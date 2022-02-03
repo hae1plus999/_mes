@@ -19,7 +19,7 @@
    
    <definition name="/product/find_goods_warehouse" extends="baseLayout">
       <put-attribute name="title" value="생산품창고입고처리" />
-      <put-attribute name="body" value="/WEB-INF/views/product/goods_warehouse/find_goods_warehouse.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/product/goods_warehouse/main_goods_warehouse.jsp" />
    </definition>
    
 </tiles-definitions>

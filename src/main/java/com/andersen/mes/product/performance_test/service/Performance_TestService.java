@@ -14,5 +14,5 @@ public interface Performance_TestService {
 	 public List findDate_performance_test(Performance_TestVO performance_testVO) throws DataAccessException;
 	 public int add_performance_test(Performance_TestVO performance_testVO) throws DataAccessException;
 	 public int mod_performance_test(Performance_TestVO performance_testVO) throws DataAccessException;
-	 public int rem_performance_test(String id) throws DataAccessException;
+	 public int rem_performance_test(Performance_TestVO performance_testVO) throws DataAccessException;
 }

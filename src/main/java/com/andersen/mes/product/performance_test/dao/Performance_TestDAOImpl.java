@@ -56,8 +56,8 @@ public class Performance_TestDAOImpl implements Performance_TestDAO{
 	}
 	
 	@Override
-	public int deletePerformance_Test(String id) throws DataAccessException {
-		int result = sqlSession.insert("mapper.product.performance.deletePerformance_Test", id);
+	public int deletePerformance_Test(Performance_TestVO performance_testVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.product.performance.deletePerformance_Test", performance_testVO);
 		return result;
 	}
 }

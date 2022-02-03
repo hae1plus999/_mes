@@ -13,13 +13,14 @@
       #container {
         width: 100%;
         margin: 0px auto;
-          
         border: 0px solid #bcbcbc;
+  
       }
       
       #header {
         width: 100%;
         text-align:center;
+        position:fixed;
       }
       
       #sidebar-left {

@@ -15,6 +15,7 @@
 		<result property="rd_Status" column="rd_Status" />
 		<result property="work_Scope" column="work_Scope" />
 		
+		<result property="num" column="num" />
 		<result property="test_Date" column="test_Date" />
 		<result property="test_Class" column="test_Class" />
 		<result property="sample_Quantity" column="sample_Quantity" />
@@ -41,6 +42,7 @@
 		select * from performance_test_sub	
 		where
 		pr_NO=#{pr_NO}	
+		order by num desc
 	]]>
   	</select>
   	
@@ -52,8 +54,8 @@
   	
   	<insert id="insertPerformance_Test"  parameterType="Performance_TestVO">
 		<![CDATA[
-		 insert into performance_test_sub(pr_NO, test_Date, test_Class, sample_Quantity, test_Type, pass, passed_Quantity, fail_Quantity)
-		 values(#{pr_NO}, #{test_Date}, #{test_Class}, #{sample_Quantity}, #{test_Type}, #{pass}, #{passed_Quantity}, #{fail_Quantity})
+		 insert into performance_test_sub(pr_NO, num, test_Date, test_Class, sample_Quantity, test_Type, pass, passed_Quantity, fail_Quantity)
+		 values(#{pr_NO},#{num}, #{test_Date}, #{test_Class}, #{sample_Quantity}, #{test_Type}, #{pass}, #{passed_Quantity}, #{fail_Quantity})
 		]]>      
 	</insert>
 	
@@ -63,15 +65,15 @@
 	     set test_Date=#{test_Date}, test_Class=#{test_Class}, sample_Quantity=#{sample_Quantity}, test_Type=#{test_Type}, pass=#{pass}, passed_Quantity=#{passed_Quantity},
 	     fail_Quantity=#{fail_Quantity}
 	     where
-	     pr_NO=#{pr_NO}
+	     pr_NO=#{pr_NO} and num=#{num}
       ]]>      
    	</update>
    	
-   	<delete id="deletePerformance_Test"  parameterType="String">
+   	<delete id="deletePerformance_Test"  parameterType="Performance_TestVO">
 	<![CDATA[
 	   delete from performance_test_sub
 	   where
-	   pr_NO=#{pr_NO}
+	   pr_NO=#{pr_NO} and num=#{num}
 	]]>      
   	</delete>
 	

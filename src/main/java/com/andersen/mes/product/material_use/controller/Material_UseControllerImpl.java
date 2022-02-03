@@ -25,7 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.andersen.mes.product.material_use.vo.Material_UseVO;
-import com.andersen.mes.product.performance_registration.vo.Performance_RegistrationVO;
 import com.andersen.mes.product.material_use.service.Material_UseService;
 
 @Controller("material_useController")
@@ -87,7 +86,6 @@ public class Material_UseControllerImpl implements Material_UseController {
 		if(pr_NO != null) {
 			
 			material_useVO.setPr_NO(pr_NO);//다음페이지 생산자재사용등록 저장하기 위한 vo 세터저장
-			
 			List downList = material_useService.DownList_material_use(pr_NO);
 			List mainList = material_useService.main_material_use();
 			mav.addObject("downList", downList);
@@ -119,7 +117,10 @@ public class Material_UseControllerImpl implements Material_UseController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		System.out.println("/product/add_material_use.do");
-	
+		
+		List downList = material_useService.DownList_material_use(material_useVO.getPr_NO());
+		int num = downList.size() + 1;
+		material_useVO.setNum(num);
 		//가져온 문자열을 Date로 변환후 sql.Date 로 변환        
 		Date use_Date = sdf.parse(addList.get(0).replaceAll(", ", ""));
 		String a = sdf.format(use_Date);
@@ -152,26 +153,41 @@ public class Material_UseControllerImpl implements Material_UseController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		System.out.println("/product/mod_material_use.do");
-	       
+		
+		int num = Integer.parseInt(modList.get(0).replaceAll(", ", ""));
+		material_useVO.setNum(num);
+		System.out.println(num);
+		
 		//가져온 문자열을 Date로 변환후 sql.Date 로 변환        
-		Date use_Date = sdf.parse(modList.get(0).replaceAll(", ", ""));
+		Date use_Date = sdf.parse(modList.get(1).replaceAll(", ", ""));
 		String a = sdf.format(use_Date);
 		java.sql.Date date = java.sql.Date.valueOf(a);
 		material_useVO.setUse_Date(date);
+		System.out.println(date);
 		
-		String pr_Process = modList.get(1).replaceAll(", ", "");
+		String pr_Process = modList.get(2).replaceAll(", ", "");
 		material_useVO.setPr_Process(pr_Process);
 		System.out.println(pr_Process);
-		String pr_Workspace = modList.get(2).replaceAll(", ", "");
+		
+		String pr_Workspace = modList.get(3).replaceAll(", ", "");
 		material_useVO.setPr_Workspace(pr_Workspace);
-		String itemNO = modList.get(3).replaceAll(", ", "");
+		System.out.println(pr_Workspace);
+		
+		String itemNO = modList.get(4).replaceAll(", ", "");
 		material_useVO.setItemNO(itemNO);
-		String item_Name = modList.get(4).replaceAll(", ", "");
+		System.out.println(itemNO);
+		
+		String item_Name = modList.get(5).replaceAll(", ", "");
 		material_useVO.setItem_Name(item_Name);
-		String stockUnit = modList.get(5).replaceAll(", ", "");
+		System.out.println(item_Name);
+		
+		String stockUnit = modList.get(6).replaceAll(", ", "");
 		material_useVO.setStockUnit(stockUnit);
-		int cds_needQuantity = Integer.parseInt(modList.get(6).replaceAll(", ", ""));
+		System.out.println(stockUnit);
+		
+		int cds_needQuantity = Integer.parseInt(modList.get(7).replaceAll(", ", ""));
 		material_useVO.setCds_needQuantity(cds_needQuantity);
+		System.out.println(cds_needQuantity);
 		
 	    int result = 0;
 	    result = material_useService.mod_material_use(material_useVO);
@@ -179,17 +195,18 @@ public class Material_UseControllerImpl implements Material_UseController {
 		return mav;
 	}
 	
-	@Override  //품번으로 삭제
+	@Override  //실적번호의 순서로 삭제
 	@RequestMapping(value="/product/rem_material_use.do" ,method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView rem_material_use(@RequestParam(value="tdArr[]") List<String> remList, 
 			           HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		
 		System.out.println("/product/rem_material_use.do");
-		String itemNo = remList.get(0);
-		System.out.println(itemNo);
+		int num = Integer.parseInt(remList.get(0));
+		System.out.println("삭제할 순서의 번호"+num);
+		material_useVO.setNum(num);
 		
-		material_useService.rem_material_use(itemNo);
+		material_useService.rem_material_use(material_useVO);
 		ModelAndView mav = new ModelAndView("redirect:/product/main_material_use.do");
 		return mav;
 	}

@@ -9,8 +9,9 @@
 <html>
 <head>
 <meta charset=UTF-8">
-<title>회원 정보 출력창</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type ="text/javascript">
 
 $(function(){
@@ -92,6 +93,18 @@ $(function(){
 		});
 	});
 });
+
+$(function () {
+    $("#datepicker1").datepicker({
+    	dateFormat : "yy-mm-dd"
+    });
+});
+
+$(function () {
+    $("#datepicker2").datepicker({
+    	dateFormat : "yy-mm-dd"
+    });
+});
 	
 </script>
 </head>
@@ -121,8 +134,8 @@ $(function(){
    			<br>
             <form method="post" action="${contextPath}/product/find_direction_deadline.do">
             <tr>
-        		<td style="text-align: right;">지시기간 : <input type="text" name="beginDate" style="background-color:#a9e2f8;">
-        		 - <input type="text" name="endDate" style="background-color:#a9e2f8;"></td>
+        		<td style="text-align: right;">지시기간 : <input type="text" id="datepicker1" name="beginDate" style="background-color:#a9e2f8;">
+        		 ~ <input type="text" id="datepicker2" name="endDate" style="background-color:#a9e2f8;"></td>
             	<td><input type="submit" value="검색" style="width: 50px;"></td>
             </tr>
            	</form>
@@ -153,7 +166,7 @@ $(function(){
    <tr align="center">
    	<td class="td_1" style="text-align: center;"><input type="checkbox" id="up_CheckBox" name="checked_pr_no" class="checked_rd_no" style="width: 40px;"></td>
       <td class="th_2"><input type="text" size=20 value="${main.rd_NO}" disabled></td>
-      <td class="th_3"><input type="text" size=10 value="${main.rd_Date}" disabled></td>
+      <td class="th_3"><input type="text" size=15 value="${main.rd_Date}" disabled></td>
       <td class="th_4"><input type="text" size=10 value="${main.mr_Date}" disabled></td>
       <td class="th_4"><input type="text" size=10 value="${main.itemNO}" disabled></td>
       <td class="th_5"><input type="text" size=20 value="${main.item_Name}" disabled></td>
@@ -166,7 +179,7 @@ $(function(){
   	<tr align="center">
    	<td class="td_1" style="text-align: center;"><input type="checkbox" id="up_CheckBox" style="width: 40px;"></td>
       <td class="th_2"><input type="text" size=20 name="rd_no"></td>
-      <td class="th_3"><input type="text" size=10 name="pr_NO"></td>
+      <td class="th_3"><input type="text" size=15 name="pr_NO"></td>
       <td class="th_4"><input type="text" size=10 name="use_Report"></td>
       <td class="th_4"><input type="text" size=10 name="pr_Process"></td>
       <td class="th_5"><input type="text" size=20 name="pr_Workspace"></td>

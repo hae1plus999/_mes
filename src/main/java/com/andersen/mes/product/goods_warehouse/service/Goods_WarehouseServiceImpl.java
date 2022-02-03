@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.andersen.mes.product.goods_warehouse.dao.Goods_WarehouseDAO;
 import com.andersen.mes.product.goods_warehouse.vo.Goods_WarehouseVO;
+import com.andersen.mes.product.performance_registration.vo.Performance_RegistrationVO;
 
 @Service("goods_warehouseService")
 public class Goods_WarehouseServiceImpl implements Goods_WarehouseService {
@@ -30,9 +31,16 @@ public class Goods_WarehouseServiceImpl implements Goods_WarehouseService {
 	}
 	
 	@Override
-	public List find_goods_warehouse(String pr_NO) throws DataAccessException {
+	public List DownList_goods_warehouse(String pr_NO) throws DataAccessException {
+		List downList = null;
+		downList = goods_warehouseDAO.searchPr_noDownList(pr_NO);
+		return downList;
+	}
+	
+	@Override
+	public List findDate_goods_warehouse(Goods_WarehouseVO goods_warehouseVO) throws DataAccessException {
 		List findList = null;
-		findList = goods_warehouseDAO.searchGoods_Warehouse(pr_NO);
+		findList = goods_warehouseDAO.searchDateUpList(goods_warehouseVO);
 		return findList;
 	}
 	
@@ -47,7 +55,7 @@ public class Goods_WarehouseServiceImpl implements Goods_WarehouseService {
 	}
 	
 	@Override
-	public int rem_goods_warehouse(String id) throws DataAccessException {
-		return goods_warehouseDAO.deleteGoods_Warehouse(id);
+	public int rem_goods_warehouse(String pr_NO) throws DataAccessException {
+		return goods_warehouseDAO.deleteGoods_Warehouse(pr_NO);
 	}
 }

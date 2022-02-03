@@ -39,8 +39,8 @@ public class Material_UseDAOImpl implements Material_UseDAO {
 	
 	@Override
 	public List searchDateUpList(Material_UseVO material_useVO) throws DataAccessException {
-		List<Performance_RegistrationVO> findList = null;
-		findList = sqlSession.selectList("mapper.product.searchDateUpList", material_useVO);
+		List<Material_UseVO> findList = null;
+		findList = sqlSession.selectList("mapper.product.material.searchDateUpList", material_useVO);
 		return findList;
 	}
 	
@@ -57,8 +57,8 @@ public class Material_UseDAOImpl implements Material_UseDAO {
 	}
 	
 	@Override
-	public int deleteMaterial_Use(String itemNO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.product.material.deleteMaterial_Use", itemNO);
+	public int deleteMaterial_Use(Material_UseVO material_useVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.product.material.deleteMaterial_Use", material_useVO);
 		return result;
 	}
 }

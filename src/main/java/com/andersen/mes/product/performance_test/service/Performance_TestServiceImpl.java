@@ -57,7 +57,7 @@ public class Performance_TestServiceImpl implements Performance_TestService{
 	}
 	
 	@Override
-	public int rem_performance_test(String id) throws DataAccessException {
-		return performance_testDAO.deletePerformance_Test(id);
+	public int rem_performance_test(Performance_TestVO performance_testVO) throws DataAccessException {
+		return performance_testDAO.deletePerformance_Test(performance_testVO);
 	}
 }

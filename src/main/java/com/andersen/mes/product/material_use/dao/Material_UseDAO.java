@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.andersen.mes.product.material_use.vo.Material_UseVO;
-import com.andersen.mes.product.performance_registration.vo.Performance_RegistrationVO;
 
 public interface Material_UseDAO {
 
@@ -15,6 +14,6 @@ public interface Material_UseDAO {
 	 public List searchDateUpList(Material_UseVO material_useVO) throws DataAccessException;
 	 public int insertMaterial_Use(Material_UseVO material_useVO) throws DataAccessException ;
 	 public int updateMaterial_Use(Material_UseVO material_useVO) throws DataAccessException ;
-	 public int deleteMaterial_Use(String itemNO) throws DataAccessException;
+	 public int deleteMaterial_Use(Material_UseVO material_useVO) throws DataAccessException;
 
 }

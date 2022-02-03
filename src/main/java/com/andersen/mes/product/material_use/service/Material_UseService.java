@@ -13,5 +13,5 @@ public interface Material_UseService {
 	 public List findDate_material_use(Material_UseVO material_useVO) throws DataAccessException;
 	 public int add_material_use(Material_UseVO material_useVO) throws DataAccessException;
 	 public int mod_material_use(Material_UseVO material_useVO) throws DataAccessException;
-	 public int rem_material_use(String itemNO) throws DataAccessException;
+	 public int rem_material_use(Material_UseVO material_useVO) throws DataAccessException;
 }

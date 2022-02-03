@@ -21,6 +21,7 @@ public class Performance_TestVO {
 	String work_Scope; //DEFAULT '작업지시' 작업구분
 	
 //	String pr_NO; //작업실적번호
+	int num; //순서
 	Date test_Date; //default sysdate 검사일
 	String test_Class; //검사구분
 	int sample_Quantity; //시료수
@@ -55,10 +56,11 @@ public class Performance_TestVO {
 		this.work_Scope = work_Scope;
 	}
 
-	public Performance_TestVO(String pr_NO, Date test_Date, String test_Class, int sample_Quantity, String test_Type,
+	public Performance_TestVO(String pr_NO, int num, Date test_Date, String test_Class, int sample_Quantity, String test_Type,
 			String pass, int passed_Quantity, int fail_Quantity) {
 
 		this.pr_NO = pr_NO;
+		this.num = num;
 		this.test_Date = test_Date;
 		this.test_Class = test_Class;
 		this.sample_Quantity = sample_Quantity;
@@ -210,6 +212,14 @@ public class Performance_TestVO {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 	
 }

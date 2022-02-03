@@ -24,6 +24,7 @@ public class Material_UseVO {
 	int pr_Quantity; // 실적수량
 	
 //	pr_NO 작업실적번호 실적번호로 연결
+	int num; //순서
 	Date use_Date; //default sysdate 사용일
 //	pr_Process 공정
 //	pr_Workspace 작업장
@@ -62,10 +63,11 @@ public class Material_UseVO {
 		this.pr_Quantity = pr_Quantity;
 	}
 
-	public Material_UseVO(String pr_NO, Date use_Date, String pr_Process, String pr_Workspace, String itemNO, String item_Name,
+	public Material_UseVO(String pr_NO, int num, Date use_Date, String pr_Process, String pr_Workspace, String itemNO, String item_Name,
 			String stockUnit, int cds_needQuantity) {
 	
 		this.pr_NO = pr_NO;
+		this.num = num;
 		this.use_Date = use_Date;
 		this.pr_Process = pr_Process;
 		this.pr_Workspace = pr_Workspace;
@@ -169,6 +171,14 @@ public class Material_UseVO {
 
 	public void setPr_Quantity(int pr_Quantity) {
 		this.pr_Quantity = pr_Quantity;
+	}
+	
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public Date getUse_Date() {

@@ -15,6 +15,6 @@ public interface Performance_TestDAO {
 	 public List searchDateUpList(Performance_TestVO performance_testVO) throws DataAccessException;
 	 public int insertPerformance_Test(Performance_TestVO performance_testVO) throws DataAccessException ;
 	 public int updatePerformance_Test(Performance_TestVO performance_testVO) throws DataAccessException ;
-	 public int deletePerformance_Test(String id) throws DataAccessException;
+	 public int deletePerformance_Test(Performance_TestVO performance_testVO) throws DataAccessException;
 	 
 }

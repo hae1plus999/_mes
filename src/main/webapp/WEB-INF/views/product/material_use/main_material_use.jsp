@@ -9,8 +9,9 @@
 <html>
 <head>
 <meta charset=UTF-8">
-<title>회원 정보 출력창</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type ="text/javascript">
 
 $(function(){
@@ -89,7 +90,7 @@ $(function(){
 			rowData.push(tr.text());
 			
 			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-			
+			var num = td.eq(1).find('input[type="text"]').val()+", ";
 			var use_Date = td.eq(2).find('input[type="text"]').val()+", ";
 			var pr_Process = td.eq(3).find('input[type="text"]').val()+", ";
 			var pr_Workspace = td.eq(4).find('input[type="text"]').val()+", ";
@@ -99,6 +100,7 @@ $(function(){
 			var cds_needQuantity = td.eq(8).find('input[type="text"]').val()+", ";
 			
 			// 가져온 값을 배열에 담는다.
+			tdArr.push(num);
 			tdArr.push(use_Date);
 			tdArr.push(pr_Process);
 			tdArr.push(pr_Workspace);
@@ -142,9 +144,9 @@ $(function(){
 			rowData.push(tr.text());
 			
 			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-			var itemNo = td.eq(5).find('input[type="text"]').val();
+			var num = td.eq(1).find('input[type="text"]').val();
 			
-			tdArr.push(itemNo);
+			tdArr.push(num);
 			
 			$.ajax({
                 type : 'GET',
@@ -159,6 +161,18 @@ $(function(){
 	});
 });
 	
+$(function () {
+    $("#datepicker1").datepicker({
+    	dateFormat : "yy-mm-dd"
+    });
+});
+
+$(function () {
+    $("#datepicker2").datepicker({
+    	dateFormat : "yy-mm-dd"
+    });
+});
+
 </script>
 </head>
 <style>
@@ -187,8 +201,8 @@ $(function(){
    			<br>
             <form method="post" action="${contextPath}/product/find_performance_registration.do">
             <tr>
-        		<td style="text-align: right;">실적기간 : <input type="text" name="beginDate" style="background-color:#a9e2f8;">
-        		 - <input type="text" name="endDate" style="background-color:#a9e2f8;"></td>
+        		<td style="text-align: right;">실적기간 : <input type="text" id="datepicker1" name="beginDate" style="background-color:#a9e2f8;">
+        		 ~ <input type="text" id="datepicker2" name="endDate" style="background-color:#a9e2f8;"></td>
             	<td><input type="submit" value="검색" style="width: 50px;"></td>
             </tr>
            	</form>
@@ -225,11 +239,11 @@ $(function(){
    <tr align="center">
    	<td class="td_1" style="text-align: center;"><input type="checkbox" name="checked_pr_no" class="checked_rd_no" value="${main.pr_NO}" style="width: 40px;"></td>
       <td class="th_2"><input type="text" size=20 value="${main.rd_NO}" disabled></td>
-      <td class="th_3"><input type="text" size=10 value="${main.pr_NO}" disabled></td>
-      <td class="th_4"><input type="text" size=10 value="${main.use_Report}" disabled></td>
+      <td class="th_3"><input type="text" size=20 value="${main.pr_NO}" disabled></td>
+      <td class="th_4"><input type="text" size=15 value="${main.use_Report}" disabled></td>
       <td class="th_4"><input type="text" size=10 value="${main.pr_Process}" disabled></td>
       <td class="th_5"><input type="text" size=20 value="${main.pr_Workspace}" disabled></td>
-      <td class="th_6"><input type="text" size=10 value="${main.pr_Date}" disabled></td>
+      <td class="th_6"><input type="text" size=15 value="${main.pr_Date}" disabled></td>
       <td class="th_7"><input type="text" size=10 value="${main.itemNO}" disabled></td>
       <td class="th_8"><input type="text" size=10 value="${main.item_Name}" disabled></td>
       <td class="th_9"><input type="text" size=10 value="${main.stockUnit}" disabled></td>
@@ -242,11 +256,11 @@ $(function(){
   	<tr align="center">
    	<td class="td_1" style="text-align: center;"><input type="checkbox" style="width: 40px;"></td>
       <td class="th_2"><input type="text" size=20 name="rd_no"></td>
-      <td class="th_3"><input type="text" size=10 name="pr_NO"></td>
-      <td class="th_4"><input type="text" size=10 name="use_Report"></td>
+      <td class="th_3"><input type="text" size=20 name="pr_NO"></td>
+      <td class="th_4"><input type="text" size=15 name="use_Report"></td>
       <td class="th_4"><input type="text" size=10 name="pr_Process"></td>
       <td class="th_5"><input type="text" size=20 name="pr_Workspace"></td>
-      <td class="th_6"><input type="text" size=10 name="pr_Date"></td>
+      <td class="th_6"><input type="text" size=15 name="pr_Date"></td>
       <td class="th_7"><input type="text" size=10 name="itemNO"></td>
       <td class="th_8"><input type="text" size=10 name="item_Name"></td>
       <td class="th_9"><input type="text" size=10 name="stockUnit"></td>
@@ -271,13 +285,13 @@ $(function(){
                     <th>단위</th>
                     <th>사용수량</th>
                 </tr>
-                <c:forEach var="down" items="${downList}" > 
+                <c:forEach var="down" items="${downList}" varStatus="downNum"> 
                 <tr>
-	                <td style="text-align: center;"><input type="checkbox" id="down_CheckBox" value="${down.pr_NO}" style="width: 40px;"></td>
-	                <td ><input type="text" size="10" name="no" value="숫자"></td>
-	                <td ><input type="text" size=10 name="use_Date" value="${down.use_Date}"></td><!--  -->
-	                <td ><input type="text" size=10 name="pr_Process" value="${down.pr_Process}"></td><!-- 실적일 -->
-	                <td ><input type="text" size=10 name="pr_Workspace" value="${down.pr_Workspace}"></td><!-- 공정 -->
+	                <td style="text-align: center;"><input type="checkbox" id="down_CheckBox" style="width: 40px;"></td>
+	                <td ><input type="text" size="7" name="no" value="${down.num}" disabled></td>
+	                <td ><input type="text" size=15 name="use_Date" value="${down.use_Date}"></td><!--  -->
+	                <td ><input type="text" size=15 name="pr_Process" value="${down.pr_Process}"></td><!-- 실적일 -->
+	                <td ><input type="text" size=20 name="pr_Workspace" value="${down.pr_Workspace}"></td><!-- 공정 -->
 	                <td ><input type="text" size=10 name="itemNO" value="${down.itemNO}"></td><!-- 작업장 -->
 	                <td ><input type="text" size=10 name="item_Name" value="${down.item_Name}"></td><!--  -->
 	                <td ><input type="text" size=10 name="stockUnit" value="${down.stockUnit}"></td><!--  -->
@@ -286,10 +300,10 @@ $(function(){
                 </c:forEach>
                 <tr>
 	                <td style="text-align: center;"><input type="checkbox" id="down_CheckBox" style="width: 40px;"></td>
-	                <td ><input type="text" size="10" name="no" ></td>
-	                <td ><input type="text" size=10 name="use_Date" ></td><!--  -->
-	                <td class="td_7"><input type="text" size=10 name="pr_Process" ></td><!-- 실적일 -->
-	                <td class="td_8"><input type="text" size=10 name="pr_Workspace" ></td><!--  -->
+	                <td ><input type="text" size="7" name="no" disabled></td>
+	                <td ><input type="text" size=15 name="use_Date" ></td><!--  -->
+	                <td class="td_7"><input type="text" size=15 name="pr_Process" ></td><!-- 실적일 -->
+	                <td class="td_8"><input type="text" size=20 name="pr_Workspace" ></td><!--  -->
 	                <td class="td_9"><input type="text" size=10 name="itemNO" ></td><!--  -->
 	                <td class="td_10"><input type="text" size=10 name="item_Name" ></td><!--  -->
 	                <td class="td_10"><input type="text" size=10 name="stockUnit" ></td><!--  -->

@@ -18,6 +18,7 @@
 		<result property="pr_OrNot" column="pr_OrNot" />
 		<result property="pr_Quantity" column="pr_Quantity" />
 		
+		<result property="num" column="num" />
 		<result property="use_Date" column="use_Date" />
 		<result property="cds_needQuantity" column="cds_needQuantity" />
 
@@ -31,9 +32,10 @@
 	
   	<select id="searchPr_noDownList"  resultType="material_useVO" parameterType="String" >
 	<![CDATA[
-		select * from material_use_sub	
+		select * from material_use_sub
 		where
 		pr_NO=#{pr_NO}	
+		order by num desc
 	]]>
   	</select>
   	
@@ -45,8 +47,8 @@
   	
   	<insert id="insertMaterial_Use"  parameterType="material_useVO">
 		<![CDATA[
-		 insert into material_use_sub(pr_NO, use_Date, pr_Process, pr_Workspace, itemNO, item_Name, stockUnit, cds_needQuantity)
-		 values(#{pr_NO}, #{use_Date}, #{pr_Process}, #{pr_Workspace}, #{itemNO}, #{item_Name}, #{stockUnit}, #{cds_needQuantity})
+		 insert into material_use_sub(pr_NO, num, use_Date, pr_Process, pr_Workspace, itemNO, item_Name, stockUnit, cds_needQuantity)
+		 values(#{pr_NO}, #{num}, #{use_Date}, #{pr_Process}, #{pr_Workspace}, #{itemNO}, #{item_Name}, #{stockUnit}, #{cds_needQuantity})
 		]]>      
 	</insert>
 	
@@ -55,15 +57,15 @@
 	     update material_use_sub
 	     set use_Date=#{use_Date}, pr_Process=#{pr_Process}, pr_Workspace=#{pr_Workspace}, itemNO=#{itemNO}, stockUnit=#{stockUnit}, cds_needQuantity=#{cds_needQuantity}
 	     where
-	     pr_NO=#{pr_NO}
+	     pr_NO=#{pr_NO} and num=#{num}
       ]]>      
    	</update>
    	
-   	<delete id="deleteMaterial_Use"  parameterType="String">
+   	<delete id="deleteMaterial_Use"  parameterType="material_useVO">
 	<![CDATA[
 	   delete from material_use_sub
 	   where
-	   itemNO=#{itemNO}
+	   pr_NO=#{pr_NO} and num=#{num}
 	]]>      
   	</delete>
 	

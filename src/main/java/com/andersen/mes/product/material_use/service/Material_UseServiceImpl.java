@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.andersen.mes.product.material_use.vo.Material_UseVO;
-import com.andersen.mes.product.performance_registration.vo.Performance_RegistrationVO;
 import com.andersen.mes.product.material_use.dao.Material_UseDAO;
 
 @Service("material_useService")
@@ -51,7 +50,7 @@ public class Material_UseServiceImpl implements Material_UseService{
 	}
 	
 	@Override
-	public int rem_material_use(String itemNO) throws DataAccessException {
-		return material_useDAO.deleteMaterial_Use(itemNO);
+	public int rem_material_use(Material_UseVO material_useVO) throws DataAccessException {
+		return material_useDAO.deleteMaterial_Use(material_useVO);
 	}
 }
