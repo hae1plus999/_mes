@@ -115,7 +115,6 @@ $(function(){
         
 </style>
 <body>
-
 		<div class="div1">
    			<br>
             <form method="post" action="${contextPath}/product/find_direction_deadline.do">
