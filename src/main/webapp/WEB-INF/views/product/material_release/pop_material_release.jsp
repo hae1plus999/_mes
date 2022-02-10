@@ -87,8 +87,8 @@ $(function(){
    			<br>
    			<form method="post" action="${contextPath}/product/pop_material_release.do">
             <tr>
-        		<td style="text-align: right;">청구기간 : <input type="text" name="beginDate" style="background-color:#a9e2f8;">
-        		 - <input type="text" name="endDate" style="background-color:#a9e2f8;"></td>
+        		<td style="text-align: right;">청구기간 <input type="date" name="beginDate" style="background-color:#a9e2f8;">
+        		 ~ <input type="date" name="endDate" style="background-color:#a9e2f8;"></td>
             	<td><input type="submit" value="조회" style="width: 50px;"></td>
             </tr>
            	</form>
@@ -98,7 +98,7 @@ $(function(){
             <input type="submit" id="request" value="요청적용" style="width: 70px;"/>
      </div><br><br>
      <div class="tb1"> 
-	<table  id="RD1" cellspacing="10" align="center"  width="80%">
+	<table  id="RD1" cellspacing="10" align="center">
 	    <tr class="tbg" align="center" bgcolor="#a9e2f8">
 	      <th class="th_1">항목</th>
 	      <th class="th_2"><b>청구일자</b></th>
@@ -115,29 +115,29 @@ $(function(){
 	 <c:forEach var="pop" items="${popList}" varStatus="popList" >     
 	   <tr align="center">
 	   	<td class="td_1" style="text-align: center;"><input type="checkbox" name="checked_mr_no" id="checkBox" value="${pop.rd_NO}" style="width: 40px;"></td>
-	      <td class="th_2"><input type="text" size=20 value="${pop.cds_Request_Date}" disabled></td>
+	      <td class="th_2"><input type="date" size=6 value="${pop.cds_Request_Date}" disabled></td>
 	      <td class="th_3"><input type="text" size=10 value="${pop.rd_NO}" disabled></td>
-	      <td class="th_4"><input type="text" size=10 value="${popList.count}" disabled></td>
+	      <td class="th_4"><input type="text" size=4 value="${popList.count}" disabled></td>
 	      <td class="th_4"><input type="text" size=10 value="${pop.itemNO}" disabled></td>
-	      <td class="th_5"><input type="text" size=20 value="${pop.item_Name}" disabled></td>
-	      <td class="th_6"><input type="text" size=10 value="${pop.stockUnit}" disabled></td>
-	      <td class="th_7"><input type="text" size=10 value="${pop.cds_needQuantity}" disabled></td>
-	      <td class="th_6"><input type="text" size=10 value="0" disabled></td>
-	      <td class="th_7"><input type="text" size=10 value="${pop.cds_needQuantity}" disabled></td>
+	      <td class="th_5"><input type="text" size=10 value="${pop.item_Name}" disabled></td>
+	      <td class="th_6"><input type="text" size=4 value="${pop.stockUnit}" disabled></td>
+	      <td class="th_7"><input type="text" size=4 value="${pop.cds_needQuantity}" disabled></td>
+	      <td class="th_6"><input type="text" size=4 value="0" disabled></td>
+	      <td class="th_7"><input type="text" size=4 value="${pop.cds_needQuantity}" disabled></td>
 	    </tr>
 	  </c:forEach>
 	  </form>
 	  	<tr align="center">
 	   	<td class="td_1" style="text-align: center;"><input type="checkbox" style="width: 40px;"></td>
-	      <td class="th_2"><input type="text" size=20 name="rd_no"></td>
+	      <td class="th_2"><input type="date" size=6 name="rd_no"></td>
 	      <td class="th_3"><input type="text" size=10 name="release_Status"></td>
-	      <td class="th_4"><input type="text" size=10 name="rd_Workspace"></td>
+	      <td class="th_4"><input type="text" size=4 name="rd_Workspace"></td>
 	      <td class="th_4"><input type="text" size=10 name="rd_Date"></td>
-	      <td class="th_5"><input type="text" size=20 name="mr_Date"></td>
-	      <td class="th_6"><input type="text" size=10 name="itemNO"></td>
-	      <td class="th_7"><input type="text" size=10 name="item_Name"></td>
-	      <td class="th_6"><input type="text" size=10 name="itemNO"></td>
-	      <td class="th_7"><input type="text" size=10 name="item_Name"></td>
+	      <td class="th_5"><input type="text" size=10 name="mr_Date"></td>
+	      <td class="th_6"><input type="text" size=4 name="itemNO"></td>
+	      <td class="th_7"><input type="text" size=4 name="item_Name"></td>
+	      <td class="th_6"><input type="text" size=4 name="itemNO"></td>
+	      <td class="th_7"><input type="text" size=4 name="item_Name"></td>
 	    </tr>
 	</table>
 	</div>

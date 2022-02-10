@@ -19,6 +19,9 @@
 		width: 100%;
 		height: 150px;
 	}
+	.header {
+		 
+	}
 </style>
 <body>
 	<header class="header">

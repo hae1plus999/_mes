@@ -18,9 +18,9 @@
       }
       
       #header {
-        width: 100%;
         text-align:center;
-        position:fixed;
+        height:150px;
+        position: fixed;
       }
       
       #sidebar-left {
@@ -34,8 +34,10 @@
       }
      
       #content {
-        width: 75%;
+        width: 70%;
+        float: right;
         padding: 5px;
+        margin-top: 150px;
         margin-right: 5px;
         float: left;
         border: 0px solid #bcbcbc;
